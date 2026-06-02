@@ -208,37 +208,22 @@ campus-lost-found-system/
 ## Screenshots
 
 ### Home Page
-![Home Page](frontend/public/screenshots/home.png)
+![Home Page](screenshots/home.png)
 
 ### Login Page
-![Login Page](frontend/public/screenshots/login.png)
+![Login Page](screenshots/login.png)
 
 ### Register Page
-![Register Page](frontend/public/screenshots/register.png)
+![Register Page](screenshots/register.png)
 
 ### Lost Items Page
-![Lost Items Page](frontend/public/screenshots/lost-items.png)
+![Lost Items Page](screenshots/lost-items.png)
 
 ### Found Items Page
-![Found Items Page](frontend/public/screenshots/found-items.png)
+![Found Items Page](screenshots/found-items.png)
 
 ### Report Lost Item Page
-![Report Lost Item Page](frontend/public/screenshots/report-lost.png)
-
-### Report Found Item Page
-![Report Found Item Page](frontend/public/screenshots/report-found.png)
-
-### My Reports Page
-![My Reports Page](frontend/public/screenshots/my-reports.png)
-
-### Admin Dashboard
-![Admin Dashboard](frontend/public/screenshots/admin-dashboard.png)
-
-### Manage Reports Page
-![Manage Reports Page](frontend/public/screenshots/manage-reports.png)
-
-### Manage Claims Page
-![Manage Claims Page](frontend/public/screenshots/manage-claims.png)
+![Report Lost Item Page](screenshots/report-lost-item.png)
 
 ---
 
