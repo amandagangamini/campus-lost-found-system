@@ -231,14 +231,14 @@ campus-lost-found-system/
 ### My Reports Page
 ![My Reports Page](screenshots/my-reports.png)
 
-### Claim Request Page
-![Claim Request Page](screenshots/claim-request.png)
+### Manage Claims Page
+![Manage Claims Page](screenshots/manage-claims.png)
 
 ### Admin Dashboard
 ![Admin Dashboard](screenshots/admin-dashboard.png)
 
-### Admin Claims Management
-![Admin Claims Management](screenshots/admin-claims.png)
+### Manage Reports
+![Manage Reports Page](screenshots/manage-reports.png)
 
 ---
 
