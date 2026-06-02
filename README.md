@@ -223,7 +223,22 @@ campus-lost-found-system/
 ![Found Items Page](screenshots/found-items.png)
 
 ### Report Lost Item Page
-![Report Lost Item Page](screenshots/report-lost-item.png)
+![Report Lost Item Page](screenshots/report-lost.png)
+
+### Report Found Item Page
+![Report Found Item Page](screenshots/report-found.png)
+
+### My Reports Page
+![My Reports Page](screenshots/my-reports.png)
+
+### Claim Request Page
+![Claim Request Page](screenshots/claim-request.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### Admin Claims Management
+![Admin Claims Management](screenshots/admin-claims.png)
 
 ---
 
