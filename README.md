@@ -35,6 +35,12 @@ The Campus Lost and Found Management System provides a centralized platform wher
 - Search and filter items by name and location
 - Send claim requests for found items
 - View personal reports through My Reports page
+- User profile management
+- Profile photo upload
+- Password update
+- Forgot password option
+- Strong password validation
+- Back navigation button
 
 ### Admin Features
 
@@ -44,6 +50,9 @@ The Campus Lost and Found Management System provides a centralized platform wher
 - View claim requests
 - Approve or reject claim requests
 - Role-based admin access control
+- Filter reports by status
+- Admin dashboard quick action buttons
+- Delete confirmation before removing reports
 
 ---
 
@@ -106,17 +115,19 @@ campus-lost-found-system/
 
 ### Pages
 
--Home
--Login
--Register
--Lost Items
--Found Items
--Report Lost Item
--Report Found Item
--My Reports
--Admin Dashboard
--Manage Reports
--Manage Claims
+- Home
+- Login
+- Register
+- Forgot Password
+- Lost Items
+- Found Items
+- Report Lost Item
+- Report Found Item
+- My Reports
+- Profile
+- Admin Dashboard
+- Manage Reports
+- Manage Claims
 
 ---
 
@@ -141,6 +152,9 @@ campus-lost-found-system/
 - Protected routes for logged-in users
 - Admin-only access control
 - Image upload validation
+- Strong password validation
+- Duplicate claim request prevention
+- Duplicate form submission prevention
 
 ---
 
@@ -152,7 +166,9 @@ campus-lost-found-system/
 |--------|----------|-------------|
 | POST | `/api/auth/register` | Register user |
 | POST | `/api/auth/login` | Login user |
-
+| GET | `/api/auth/profile` | Get logged-in user profile |
+| PUT | `/api/auth/profile` | Update user profile, profile image, and password |
+| POST | `/api/auth/forgot-password` | Change forgotten password |
 ---
 
 ### Lost Item Routes
@@ -239,6 +255,9 @@ campus-lost-found-system/
 
 ### Manage Reports
 ![Manage Reports Page](screenshots/manage-reports.png)
+
+### Profile 
+![Profile Page](screenshots/profile.png)
 
 ---
 

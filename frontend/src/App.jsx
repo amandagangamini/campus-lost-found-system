@@ -12,6 +12,10 @@ import MyReports from "./pages/MyReports";
 import AdminDashboard from "./pages/AdminDashboard";
 import ManageReports from "./pages/ManageReports";
 import ManageClaims from "./pages/ManageClaims";
+import Profile from "./pages/Profile";
+import ForgotPassword from "./pages/ForgotPassword";
+import BackButton from "./components/BackButton";
+
 
 function AppContent() {
   const location = useLocation();
@@ -22,10 +26,13 @@ function AppContent() {
       <Navbar />
 
       <main className={isHome ? "container home-container" : "container page-container"}>
+        <BackButton />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+           <Route path="/forgot-password" element={<ForgotPassword />} />
+          
           <Route path="/lost-items" element={<LostItems />} />
           <Route path="/found-items" element={<FoundItems />} />
           <Route path="/report-lost" element={<ReportLost />} />
@@ -34,6 +41,8 @@ function AppContent() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/reports" element={<ManageReports />} />
           <Route path="/admin/claims" element={<ManageClaims />} />
+          <Route path="/profile" element={<Profile />} />
+         
         </Routes>
       </main>
     </>

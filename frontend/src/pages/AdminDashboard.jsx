@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../api/api";
+import { Link } from "react-router-dom";
 
 function AdminDashboard() {
   const [stats, setStats] = useState(null);
@@ -67,7 +68,31 @@ function AdminDashboard() {
             <h3>Resolved Found Items</h3>
             <p>{stats.resolvedFoundItems}</p>
           </div>
+
+          <div className="quick-actions">
+  <h3>Quick Actions</h3>
+
+  <div className="quick-action-grid">
+    <Link to="/admin/reports" className="quick-action-card">
+      Manage Reports
+    </Link>
+
+    <Link to="/admin/claims" className="quick-action-card">
+      Manage Claims
+    </Link>
+
+    <Link to="/lost-items" className="quick-action-card">
+      View Lost Items
+    </Link>
+
+    <Link to="/found-items" className="quick-action-card">
+      View Found Items
+    </Link>
+  </div>
+</div>
         </div>
+
+        
       )}
     </div>
   );

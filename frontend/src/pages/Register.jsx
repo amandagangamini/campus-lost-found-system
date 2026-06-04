@@ -67,6 +67,9 @@ function Register() {
           value={formData.password}
           onChange={handleChange}
         />
+        <small className="password-hint">
+  Password must include uppercase, lowercase, number, and special character.
+</small>
 
         <button type="submit">Register</button>
       </form>

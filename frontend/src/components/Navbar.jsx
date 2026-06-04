@@ -45,8 +45,16 @@ function Navbar() {
         )}
 
         {token && (
-          <Link to="/my-reports" onClick={() => setOpenMenu(false)}>My Reports</Link>
-        )}
+  <>
+    <Link to="/my-reports" onClick={() => setOpenMenu(false)}>
+      My Reports
+    </Link>
+
+    <Link to="/profile" onClick={() => setOpenMenu(false)}>
+      Profile
+    </Link>
+  </>
+)}
 
         {token && user?.role === "admin" && (
           <div className="dropdown">

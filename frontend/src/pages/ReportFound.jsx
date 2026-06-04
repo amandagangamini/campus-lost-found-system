@@ -13,6 +13,7 @@ function ReportFound() {
 
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -27,6 +28,10 @@ function ReportFound() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
 
     try {
       const token = localStorage.getItem("token");
@@ -64,6 +69,8 @@ function ReportFound() {
       setImage(null);
     } catch (error) {
       setMessage(error.response?.data?.message || "Failed to report found item");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -129,7 +136,9 @@ function ReportFound() {
 <label>Item Image</label>
 <input type="file" accept="image/*" onChange={handleImageChange} />
 
-        <button type="submit">Submit Found Item</button>
+        <button type="submit" disabled={isSubmitting}>
+  {isSubmitting ? "Submitting..." : "Submit Found Item"}
+</button>
       </form>
     </div>
   );

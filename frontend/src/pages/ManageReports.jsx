@@ -5,6 +5,7 @@ function ManageReports() {
   const [lostItems, setLostItems] = useState([]);
   const [foundItems, setFoundItems] = useState([]);
   const [message, setMessage] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const token = localStorage.getItem("token");
 
@@ -65,22 +66,34 @@ function ManageReports() {
     }
   };
 
-  const deleteLostItem = async (id) => {
-    try {
-      await API.delete(`/admin/lost-items/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+ const deleteLostItem = async (id) => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this lost item report?"
+  );
 
-      setMessage("Lost item deleted successfully");
-      fetchReports();
-    } catch (error) {
-      setMessage(error.response?.data?.message || "Failed to delete item");
-    }
-  };
+  if (!confirmDelete) return;
+
+  try {
+    await API.delete(`/admin/lost-items/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    setMessage("Lost item deleted successfully");
+    fetchReports();
+  } catch (error) {
+    setMessage(error.response?.data?.message || "Failed to delete lost item");
+  }
+};
 
   const deleteFoundItem = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this found item report?"
+    );
+
+    if (!confirmDelete) return;
+
     try {
       await API.delete(`/admin/found-items/${id}`, {
         headers: {
@@ -99,6 +112,21 @@ function ManageReports() {
     <div>
       <h2>Manage Reports</h2>
 
+      <div className="admin-filter-box">
+  <label>Filter by Status</label>
+
+  <select
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+  >
+    <option value="all">All Reports</option>
+    <option value="pending">Pending</option>
+    <option value="approved">Approved</option>
+    <option value="rejected">Rejected</option>
+    <option value="resolved">Resolved</option>
+  </select>
+</div>
+
       {message && <p className="message">{message}</p>}
 
       <h3>Lost Item Reports</h3>
@@ -107,8 +135,10 @@ function ManageReports() {
         {lostItems.length === 0 ? (
           <p>No lost item reports found.</p>
         ) : (
-          lostItems.map((item) => (
-            <div className="admin-report-card" key={item._id}>
+          lostItems
+  .filter((item) => statusFilter === "all" || item.status === statusFilter)
+  .map((item) => (
+    <div className="admin-report-card" key={item._id}>
               {item.image && (
                 <img
                   src={`http://localhost:5000${item.image}`}
@@ -153,8 +183,10 @@ function ManageReports() {
         {foundItems.length === 0 ? (
           <p>No found item reports found.</p>
         ) : (
-          foundItems.map((item) => (
-            <div className="admin-report-card" key={item._id}>
+          foundItems
+  .filter((item) => statusFilter === "all" || item.status === statusFilter)
+  .map((item) => (
+    <div className="admin-report-card" key={item._id}>
               {item.image && (
                 <img
                   src={`http://localhost:5000${item.image}`}

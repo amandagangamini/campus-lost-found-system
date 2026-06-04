@@ -16,6 +16,17 @@ const createClaim = async (req, res) => {
       return res.status(404).json({ message: "Found item not found" });
     }
 
+    const existingClaim = await Claim.findOne({
+  foundItem,
+  claimUser: req.user._id,
+});
+
+if (existingClaim) {
+  return res.status(400).json({
+    message: "You have already submitted a claim for this item",
+  });
+}
+
     const claim = await Claim.create({
       foundItem,
       claimUser: req.user._id,

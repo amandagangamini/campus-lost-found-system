@@ -9,6 +9,7 @@ function FoundItems() {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [message, setMessage] = useState("");
+  const [isClaimSubmitting, setIsClaimSubmitting] = useState(false);
 
   const [claimData, setClaimData] = useState({
     foundItem: "",
@@ -55,6 +56,9 @@ function FoundItems() {
   const submitClaim = async (e) => {
     e.preventDefault();
 
+    if (isClaimSubmitting) return;
+setIsClaimSubmitting(true);
+
     try {
       const token = localStorage.getItem("token");
 
@@ -78,7 +82,9 @@ function FoundItems() {
       });
     } catch (error) {
       setMessage(error.response?.data?.message || "Failed to send claim request");
-    }
+    }finally {
+  setIsClaimSubmitting(false);
+}
   };
 
   return (
@@ -180,12 +186,9 @@ function FoundItems() {
                 <strong>Status:</strong> <StatusBadge status={item.status} />
               </p>
 
-              <button
-                className="claim-btn"
-                onClick={() => openClaimForm(item._id)}
-              >
-                Claim Item
-              </button>
+              <button type="submit" disabled={isClaimSubmitting}>
+  {isClaimSubmitting ? "Sending..." : "Send Claim Request"}
+</button>
             </div>
           ))
         )}

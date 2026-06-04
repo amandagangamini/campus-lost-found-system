@@ -13,6 +13,7 @@ function ReportLost() {
 
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -25,47 +26,53 @@ function ReportLost() {
     setImage(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const token = localStorage.getItem("token");
+  if (isSubmitting) return;
 
-      const data = new FormData();
-      data.append("itemName", formData.itemName);
-      data.append("category", formData.category);
-      data.append("description", formData.description);
-      data.append("lostLocation", formData.lostLocation);
-      data.append("lostDate", formData.lostDate);
-      data.append("contactNumber", formData.contactNumber);
+  setIsSubmitting(true);
 
-      if (image) {
-        data.append("image", image);
-      }
+  try {
+    const token = localStorage.getItem("token");
 
-      await API.post("/lost-items", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+    const data = new FormData();
+    data.append("itemName", formData.itemName);
+    data.append("category", formData.category);
+    data.append("description", formData.description);
+    data.append("lostLocation", formData.lostLocation);
+    data.append("lostDate", formData.lostDate);
+    data.append("contactNumber", formData.contactNumber);
 
-      setMessage("Lost item reported successfully");
-
-      setFormData({
-        itemName: "",
-        category: "",
-        description: "",
-        lostLocation: "",
-        lostDate: "",
-        contactNumber: "",
-      });
-
-      setImage(null);
-    } catch (error) {
-      setMessage(error.response?.data?.message || "Failed to report lost item");
+    if (image) {
+      data.append("image", image);
     }
-  };
+
+    await API.post("/lost-items", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    setMessage("Lost item reported successfully");
+
+    setFormData({
+      itemName: "",
+      category: "",
+      description: "",
+      lostLocation: "",
+      lostDate: "",
+      contactNumber: "",
+    });
+
+    setImage(null);
+  } catch (error) {
+    setMessage(error.response?.data?.message || "Failed to report lost item");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <div className="form-container">
@@ -132,7 +139,9 @@ function ReportLost() {
 <label>Item Image</label>
 <input type="file" accept="image/*" onChange={handleImageChange} />
 
-        <button type="submit">Submit Lost Item</button>
+        <button type="submit" disabled={isSubmitting}>
+  {isSubmitting ? "Submitting..." : "Submit Lost Item"}
+</button>
       </form>
     </div>
   );

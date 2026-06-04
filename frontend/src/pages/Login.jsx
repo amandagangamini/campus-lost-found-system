@@ -11,6 +11,7 @@ function Login() {
   });
 
   const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -59,18 +60,31 @@ return (
           onChange={handleChange}
         />
 
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+       <label>Password</label>
 
+<div className="password-field">
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Enter your password"
+    value={formData.password}
+    onChange={handleChange}
+  />
+
+  <button
+    type="button"
+    className="password-toggle"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? "🙈" : "👁️"}
+  </button>
+</div>
         <button type="submit">Login</button>
       </form>
-
+      
+      <p className="auth-switch">
+  <a href="/forgot-password">Forgot password?</a>
+</p>
       <p className="auth-switch">
         Don&apos;t have an account? <a href="/register">Register here</a>
       </p>
